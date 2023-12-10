@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Use the Gradle Wrapper to ensure a specific Gradle version is used
-                sh './gradlew clean build'
+                bat './gradlew clean build'
             }
         }
     }
