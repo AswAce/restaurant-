@@ -1,4 +1,4 @@
-package restaurant.system.db.products.enteties;
+package restaurant.system.db.enteties;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,7 +11,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import restaurant.system.db.BaseEntity;
 
 @Data
 @AllArgsConstructor

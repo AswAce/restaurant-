@@ -1,4 +1,4 @@
-package restaurant.system.db.users.enteties;
+package restaurant.system.db.enteties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -8,8 +8,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import restaurant.system.db.BaseEntity;
-import restaurant.system.db.users.enums.RoleType;
+import restaurant.system.db.enums.RoleType;
 
 @Data
 @AllArgsConstructor

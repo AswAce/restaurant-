@@ -1,8 +1,7 @@
-package restaurant.system.db.products.enteties;
+package restaurant.system.db.enteties;
 
 import jakarta.persistence.Entity;
 import lombok.*;
-import restaurant.system.db.BaseEntity;
 
 @Data
 @AllArgsConstructor
