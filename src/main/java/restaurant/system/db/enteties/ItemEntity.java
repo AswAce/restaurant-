@@ -1,13 +1,9 @@
 package restaurant.system.db.enteties;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @ToString
@@ -16,26 +12,22 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-public class TableBill extends BaseEntity {
+public class ItemEntity extends BaseEntity {
 
-    private int tableNumber;
+    private String name;
 
     private double price;
 
-    private boolean paid;
+    private String description;
 
-    private LocalDateTime dateTimeOfTheBill;
-
-    @ManyToMany
-    @ToString.Exclude
-    private List<ItemEntity> items = new ArrayList<>();
+    private int quantity;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        TableBill tableBill = (TableBill) o;
-        return getId() != null && Objects.equals(getId(), tableBill.getId());
+        ItemEntity that = (ItemEntity) o;
+        return getId() != null && Objects.equals(getId(), that.getId());
     }
 
     @Override

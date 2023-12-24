@@ -1,5 +1,5 @@
 package restaurant.system.db.enums;
 
-public enum RoleType {
+public enum RoleTypes {
     ADMIN, BARMAN , CHEF ,USER
 }
