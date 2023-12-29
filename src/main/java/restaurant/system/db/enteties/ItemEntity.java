@@ -1,9 +1,6 @@
 package restaurant.system.db.enteties;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +13,8 @@ import org.hibernate.annotations.Type;
 import restaurant.system.db.enums.ItemTypes;
 import restaurant.system.db.enums.ItemTypesSpecifications;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @ToString
@@ -33,7 +32,6 @@ public class ItemEntity extends BaseEntity {
     private ItemTypesSpecifications specialType;
 
     @Column(unique = true)
-
     private String name;
 
     @Min( value = 0 ,message = "price should be higher than 0")
@@ -43,6 +41,9 @@ public class ItemEntity extends BaseEntity {
 
     @Min(value = 0, message = "Quantity must be 0 or higher")
     private int quantity;
+
+    @ManyToMany(mappedBy = "items")
+    private List<OrderEntity> orders = new ArrayList<>();
 
     public String updateQuantity(int quantity){
         if (this.getQuantity()+quantity<0){

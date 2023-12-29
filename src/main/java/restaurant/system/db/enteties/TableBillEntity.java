@@ -1,7 +1,9 @@
 package restaurant.system.db.enteties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -16,7 +18,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-public class TableBill extends BaseEntity {
+public class TableBillEntity extends BaseEntity {
 
     private int tableNumber;
 
@@ -26,15 +28,14 @@ public class TableBill extends BaseEntity {
 
     private LocalDateTime dateTimeOfTheBill;
 
-    @ManyToMany
-    @ToString.Exclude
-    private List<ItemEntity> items = new ArrayList<>();
+    @OneToMany(mappedBy = "tableBill", cascade = CascadeType.ALL)
+    private List<OrderEntity> items = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        TableBill tableBill = (TableBill) o;
+        TableBillEntity tableBill = (TableBillEntity) o;
         return getId() != null && Objects.equals(getId(), tableBill.getId());
     }
 

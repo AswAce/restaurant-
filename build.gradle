@@ -8,9 +8,15 @@ plugins {
 	id 'jacoco'
 }
 
+
 group = 'restaurant'
 version = '1'
 
+ ext{
+     mySQLConnector = "8.0.33"
+	 hibernateValidator = "8.0.1.Final"
+	 redisData = "3.2.1"
+ }
 java {
 	sourceCompatibility = '17'
 }
@@ -26,16 +32,30 @@ repositories {
 }
 
 dependencies {
+//	<!-- Webmvc/Security -->
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.security:spring-security-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+
+	//session
+	implementation "org.springframework.boot:spring-boot-starter-data-redis:$redisData"
+	implementation "org.springframework.data:spring-data-redis:$redisData"
+
+
+	//DB
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation "mysql:mysql-connector-java:$mySQLConnector" // Use the version that matches your MySQL server version
+    implementation "org.hibernate:hibernate-validator:$hibernateValidator"
+
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+
+
 	implementation 'org.springframework.kafka:spring-kafka'
-	implementation 'mysql:mysql-connector-java:8.0.33' // Use the version that matches your MySQL server version
-	implementation 'org.hibernate:hibernate-validator:8.0.1.Final'
+
 
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
