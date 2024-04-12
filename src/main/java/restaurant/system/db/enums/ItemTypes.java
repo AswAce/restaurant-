@@ -1,5 +1,5 @@
 package restaurant.system.db.enums;
 
 public enum ItemTypes {
-    FOOD , DRINKS
+    SNACK ,SUSHI, DRINKS
 }

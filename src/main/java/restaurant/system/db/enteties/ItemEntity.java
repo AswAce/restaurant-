@@ -1,9 +1,6 @@
 package restaurant.system.db.enteties;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,12 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-
-import org.hibernate.annotations.Type;
 import restaurant.system.db.enums.ItemTypes;
 import restaurant.system.db.enums.ItemTypesSpecifications;
 
-import java.util.Objects;
+import java.util.*;
 
 @ToString
 @AllArgsConstructor
@@ -36,22 +31,36 @@ public class ItemEntity extends BaseEntity {
 
     private String name;
 
-    @Min( value = 0 ,message = "price should be higher than 0")
+    @Min(value = 0, message = "price should be higher than 0")
     private double price;
 
     private String description;
 
-    @Min(value = 0, message = "Quantity must be 0 or higher")
-    private int quantity;
+    private String imageURL;
 
-    public String updateQuantity(int quantity){
-        if (this.getQuantity()+quantity<0){
-         return  "Cannot update quantity for "+this.getName() + "current quantity is " +
-                 this.getQuantity() + "and we cannot deduct:"+quantity;
-        }
-        this.setQuantity(this.getQuantity()+quantity);
-        return "Quantity for "+this.getName() + "is successfully set to:"+this.getQuantity();
+    @Min(value = 0, message = "Quantity must be 0 or higher")
+    private int pieces;
+
+    private int grams;
+
+    @OneToMany(mappedBy = "itemEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<SupplyEntity> supplyEntities = new ArrayList<>();
+
+    public ItemEntity(ItemTypes types, ItemTypesSpecifications specialType, String name, double price, String description, String imageURL, int pieces, int grams) {
+        this.types = types;
+        this.specialType = specialType;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.imageURL = imageURL;
+        this.pieces = pieces;
+        this.grams = grams;
     }
+
+    public void addDailySupplier(SupplyEntity dailySupplieEntity) {
+        supplyEntities.add(dailySupplieEntity);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
