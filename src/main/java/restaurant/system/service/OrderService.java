@@ -110,6 +110,6 @@ public class OrderService {
 
 
     public List<OrderEntityDto> findAllOrdersByStatus(String orderStatus) {
-
+        return null;
     }
 }

@@ -3,36 +3,31 @@ package restaurant.system.controller.dto;
 import restaurant.system.db.enums.ItemTypes;
 import restaurant.system.db.enums.ItemTypesSpecifications;
 
-import java.util.List;
-
-public class ItemEntityDto {
+public class ItemClientEntityDto {
     private ItemTypes itemTypes;
     private ItemTypesSpecifications itemTypesSpecifications;
-
-    private int id;
     private String name;
     private String description;
     private String imageURL;
     private double price;
     private int pieces;
     private int grams;
-    private List<SupplyEntityDto> supplyEntities;
+    private SupplyEntityDto supplyEntityDto;
 
-    public ItemEntityDto() {
+    public ItemClientEntityDto() {
 
     }
 
-    public ItemEntityDto(ItemTypes itemTypes, ItemTypesSpecifications itemTypesSpecifications,int id, String name, String description, String imageURL, double price, int pieces, int grams, List<SupplyEntityDto> supplyEntities) {
+    public ItemClientEntityDto(ItemTypes itemTypes, ItemTypesSpecifications itemTypesSpecifications, String name, String description, String imageURL, double price, int pieces, int grams, SupplyEntityDto supplyEntities) {
         this.itemTypes = itemTypes;
         this.itemTypesSpecifications = itemTypesSpecifications;
-        this.id =id;
         this.name = name;
         this.description = description;
         this.imageURL = imageURL;
         this.price = price;
         this.pieces = pieces;
         this.grams = grams;
-        this.supplyEntities = supplyEntities;
+        this.supplyEntityDto = supplyEntities;
     }
 
     public ItemTypes getItemTypes() {
@@ -49,14 +44,6 @@ public class ItemEntityDto {
 
     public void setItemTypesSpecifications(ItemTypesSpecifications itemTypesSpecifications) {
         this.itemTypesSpecifications = itemTypesSpecifications;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -107,12 +94,12 @@ public class ItemEntityDto {
         this.grams = grams;
     }
 
-    public List<SupplyEntityDto> getSupplyEntities() {
-        return supplyEntities;
+    public SupplyEntityDto getDailySupplyEntitie() {
+        return supplyEntityDto;
     }
 
-    public void setSupplyEntities(List<SupplyEntityDto> supplyEntities) {
-        this.supplyEntities = supplyEntities;
+    public void setDailySupplyEntities(SupplyEntityDto supplyEntityDto) {
+        this.supplyEntityDto = supplyEntityDto;
     }
 }
 

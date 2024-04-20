@@ -39,10 +39,10 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/order-status/{orderStatus}")
-    public  ResponseEntity<List<OrderEntityDto>> getOrdersBtstatys(@RequestBody String orderStatus){
-
-       List<OrderEntityDto> ordersByStatus = orderService.findAllOrdersByStatus(orderStatus);
-
-    }
+//    @GetMapping("/order-status/{orderStatus}")
+//    public  ResponseEntity<List<OrderEntityDto>> getOrdersBtstatys(@RequestBody String orderStatus){
+//
+//       List<OrderEntityDto> ordersByStatus = orderService.findAllOrdersByStatus(orderStatus);
+//        return (ResponseEntity<List<OrderEntityDto>>) ordersByStatus;
+//    }
 }

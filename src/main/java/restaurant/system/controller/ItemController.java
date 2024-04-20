@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import restaurant.system.controller.dto.ItemClientEntityDto;
 import restaurant.system.controller.dto.ItemEntityDto;
 import restaurant.system.db.enteties.ItemEntity;
 import restaurant.system.db.enums.ItemTypesSpecifications;
@@ -22,8 +23,8 @@ public class ItemController {
     }
 
     @GetMapping("/items")
-    public List<ItemEntityDto> getItemsBySpecification(@RequestParam("productType") String productTypeStr) {
+    public List<ItemClientEntityDto> getItemsBySpecification(@RequestParam("productType") String productTypeStr) {
         ItemTypesSpecifications specification = ItemTypesSpecifications.valueOf(productTypeStr.toUpperCase());
-        return itemService.findAllByItemTypesSpecifications(specification);
+        return itemService.forClientFindAllByItemTypesSpecifications(specification);
     }
 }
